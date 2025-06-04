@@ -35,7 +35,7 @@ const allowedOrigins = [
   "http://resume-analyzer-1-qcwc.onrender.com",  // HTTP version
   "https://resume-analyzer-yegi.onrender.com",    // Backend (if needed)
   "http://resume-analyzer-yegi.onrender.com",     // HTTP version
-  "http://localhost:3000"                         // For local development
+  "http://localhost:5000"                         // For local development
 ];
 
 const corsOptions = {
