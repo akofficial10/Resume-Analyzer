@@ -30,21 +30,35 @@ if (!fs.existsSync(uploadDir)) {
 }
 
 // CORS Configuration
-const allowedOrigins = ["https://resume-analyzer-1-qcwc.onrender.com", "https://resume-analyzer-yegi.onrender.com"];
+const allowedOrigins = [
+  "https://resume-analyzer-1-qcwc.onrender.com", // Frontend
+  "http://resume-analyzer-1-qcwc.onrender.com",  // HTTP version
+  "https://resume-analyzer-yegi.onrender.com",    // Backend (if needed)
+  "http://resume-analyzer-yegi.onrender.com",     // HTTP version
+  "http://localhost:3000"                         // For local development
+];
 
 const corsOptions = {
   origin: function (origin, callback) {
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
+    // Allow requests with no origin (like mobile apps or curl requests)
+    if (!origin) return callback(null, true);
+    
+    if (allowedOrigins.includes(origin)) {
+      return callback(null, true);
     }
+    
+    // Check if the origin includes your Render domain (subdomains, etc.)
+    if (allowedOrigins.some(allowed => origin.includes(allowed))) {
+      return callback(null, true);
+    }
+    
+    callback(new Error("Not allowed by CORS"));
   },
   credentials: true,
+  optionsSuccessStatus: 200 // Some legacy browsers choke on 204
 };
 
 app.use(cors(corsOptions));
-
 // Middleware
 app.use(express.json({ limit: "10mb" })); // Allow large payloads
 app.use(express.urlencoded({ extended: true }));
