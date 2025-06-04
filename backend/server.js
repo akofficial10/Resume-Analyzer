@@ -30,7 +30,7 @@ if (!fs.existsSync(uploadDir)) {
 }
 
 // CORS Configuration
-const allowedOrigins = ["http://localhost:5173", "http://127.0.0.1:3000"];
+const allowedOrigins = ["http://localhost:5173", "https://resume-analyzer-yegi.onrender.com"];
 
 const corsOptions = {
   origin: function (origin, callback) {
