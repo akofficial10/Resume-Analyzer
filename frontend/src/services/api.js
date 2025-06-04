@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "http://localhost:5000/api/resumes", // Base path for all resume endpoints
+  baseURL: "https://resume-analyzer-yegi.onrender.com:5000/api/resumes", // Base path for all resume endpoints
 });
 
 export const uploadResume = (formData) =>
