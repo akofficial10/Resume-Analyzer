@@ -1,7 +1,9 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "http://localhost:5000/api/resumes",
+  baseURL: window.location.hostname === 'localhost' 
+    ? "http://localhost:5000/api/resumes" 
+    : "https://resume-analyzer-yegi.onrender.com/api/resumes"
 });
 
 export const uploadResume = (formData) =>
