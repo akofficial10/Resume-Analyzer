@@ -14,7 +14,7 @@ const resumeRoutes = require("./routes/resumeRoutes");
 
 const uploadDir = "uploads/";
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || "https://resume-analyzer-yegi.onrender.com" ;
 
 // Initialize OpenAI client
 const openai = new OpenAI({
